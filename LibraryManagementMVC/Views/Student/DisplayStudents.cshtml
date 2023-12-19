@@ -1,0 +1,58 @@
+﻿@model IEnumerable<LibraryManagementMVC.Models.Student>
+
+@{
+    ViewBag.Title = "DisplayStudents";
+}
+
+@section Title{
+    <h4>View Students</h4>
+}
+
+<div class="container mt-2">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr align="center">
+                <th>
+                    @Html.DisplayNameFor(model => model.Sname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Class)
+                </th>
+                <th>
+                    Photo
+                </th>
+                <th>
+                    Video
+                </th>
+                <th align="center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr align="center">
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.Sname)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.Class)
+                    </td>
+                    <td class="align-middle">
+                        <img src="/Uploads/Images/@item.PhotoName" class="img-thumbnail" width="110" height="82" alt="No Image" />
+                    </td>
+                    <td >
+                        <video width="112" height="84" class="align-middle" controls>
+                            <source src="/Uploads/Videos/@item.VideoName" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </td>
+                    <td class="align-middle">
+                        @Html.ActionLink("Edit", "EditStudent", new { id = item.Sid }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Details", "DisplayStudent", new { id = item.Sid }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Delete", "DeleteStudent", new { id = item.Sid }, new { onclick = "return confirm('Are you sure of deleting the record?')", @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

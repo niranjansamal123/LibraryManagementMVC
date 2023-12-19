@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/css/StyleSheet2.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-dark shadow no-margin">
+        <div class="navbar-header fixed-brand">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" id="menu-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand">
+                <i class="fas fa-book-open"></i>
+                Digital Library
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" id="menu-toggle-2">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav nav-pills nav-stacked" id="sidebar-menu">
+                <!-- Sidebar menu items with icons -->
+                <li class="active">
+                    <a href="/Home/Index"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="/Student/AddStudent"><i class="fas fa-user-plus"></i> Add Student</a>
+                </li>
+                <li>
+                    <a href="/Student/DisplayStudents"><i class="fas fa-graduation-cap"></i> Student Report</a>
+                </li>
+                <li>
+                    <a href="/Book/AddBook"><i class="fas fa-book"></i> Add Book</a>
+                </li>
+                <li>
+                    <a href="/Book/DisplayBooks"><i class="fas fa-book-open"></i> Book Report</a>
+                </li>
+                <li>
+                    <a href="/Report/AddReport"><i class="fas fa-file-alt"></i> Issue Book</a>
+                </li>
+                <li>
+                    <a href="/Report/DisplayReports"><i class="fas fa-list-alt"></i> Issue Report</a>
+                </li>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid xyz">
+                <!-- Page content -->
+                <div style="text-align: center; background-color: #198754; color: white; padding: 1px; ">
+                    @RenderSection("Title", true)
+                </div>
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script>
+        // jQuery and Bootstrap functions for toggling sidebar
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        $("#menu-toggle-2").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled-2");
+            $('#sidebar-menu ul').hide();
+        });
+
+        $(document).ready(function () {
+            $('#sidebar-menu ul').hide();
+            $('#sidebar-menu ul').children('.current').parent().show();
+            $('#sidebar-menu li a').click(function () {
+                var checkElement = $(this).next();
+                if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                    return false;
+                }
+                if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                    $('#sidebar-menu ul:visible').slideUp('normal');
+                    checkElement.slideDown('normal');
+                    return false;
+                }
+            });
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

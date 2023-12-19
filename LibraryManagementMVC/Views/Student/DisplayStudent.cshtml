@@ -1,0 +1,48 @@
+﻿@model LibraryManagementMVC.Models.Student
+
+@{
+    ViewBag.Title = "DisplayStudent";
+}
+
+@section Title{
+    <h4>View Student Details</h4>
+}
+
+<div class="container mt-2">
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Sname)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Sname)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Class)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Class)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+        <dd class="col-sm-9">
+            <img src="/Uploads/Images/@Model.PhotoName" class="img-fluid" width="300" height="300" alt="Student Photo" />
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Video)
+        </dt>
+        <dd class="col-sm-9">
+            <video class="img-fluid" width="320" height="240" controls>
+                <source src="~/Uploads/Videos/@Model.VideoName" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditStudent", new { id = Model.Sid }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Back to Student List", "DisplayStudents", new { @class = "btn btn-secondary" })
+</p>

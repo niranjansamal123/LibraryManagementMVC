@@ -1,0 +1,55 @@
+﻿@model IEnumerable<LibraryManagementMVC.Models.Report>
+
+@{
+    ViewBag.Title = "DisplayReports";
+}
+
+@section Title{
+    <h4>View Reports</h4>
+}
+
+<div class="container mt-2">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr align="center">
+                <th>
+                    Student Name
+                </th>
+                <th>
+                    Book Name
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr align="center">
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.Student.Sname)
+                    </td>
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => item.Book.Bname)
+                    </td>
+                    <td class="align-middle">
+                        <text>@item.StartDate.ToString("dd/MM/yyyy")</text>
+                    </td>
+                    <td class="align-middle">
+                        <text>@item.EndDate.ToString("dd/MM/yyyy")</text>
+                    </td>
+                    <td class="align-middle">
+                        @Html.ActionLink("Edit", "EditReport", new { id = item.Rid }, new { @class = "btn btn-primary btn-sm" }) |
+                        @Html.ActionLink("Details", "DisplayReport", new { id = item.Rid }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Delete", "DeleteReport", new { id = item.Rid }, new { onclick = "return confirm('Are you sure of deleting the record?')", @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

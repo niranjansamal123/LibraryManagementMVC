@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/StyleSheet1.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <img src="~/Images/adminhome.png" class="upperimg img-fluid" />
+
+    <div class="sidebar">
+        <a class="active" href="/Home/Index">Home</a>
+        <a href="/Student/AddStudent">Add Student</a>
+        <a href="/Student/DisplayStudents">Student Report</a>
+        <a href="/Book/AddBook">Add Book</a>
+        <a href="/Book/DisplayBooks">Book Report</a>
+        <a href="/Report/AddReport">Issue Book</a>
+        <a href="/Report/DisplayReports">Issue Report</a>
+    </div>
+
+    <div class="content">
+        <div class="container body-content">
+            <div style="text-align: center; background-color: green; color: white; padding: 1px;">
+                @RenderSection("Title", true)
+            </div>
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

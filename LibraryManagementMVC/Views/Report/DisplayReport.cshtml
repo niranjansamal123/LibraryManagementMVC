@@ -1,0 +1,56 @@
+﻿@model LibraryManagementMVC.Models.Report
+
+@{
+    ViewBag.Title = "DisplayReport";
+}
+
+@section Title{
+    <h4>View Report Details</h4>
+}
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">
+                    Student Name
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Student.Sname)
+                </dd>
+
+                <dt class="col-sm-4">
+                    Book Name
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Book.Bname)
+                </dd>
+
+                <dt class="col-sm-4">
+                    Start Date
+                </dt>
+                <dd class="col-sm-8">
+                    @Model.StartDate.ToString("dd/MM/yyyy")
+                </dd>
+
+                <dt class="col-sm-4">
+                    End Date
+                </dt>
+                <dd class="col-sm-8">
+                    @Model.EndDate.ToString("dd/MM/yyyy")
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                @Html.ActionLink("Edit", "EditReport", new { id = Model.Rid }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Back to Report List", "DisplayReports", new { @class = "btn btn-secondary" })
+            </p>
+        </div>
+    </div>
+</div>
